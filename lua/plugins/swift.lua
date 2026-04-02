@@ -67,7 +67,7 @@ return {
       -- BUILD
       -- map("n", "<leader>Xb", ":SwiftBuild<CR>", { desc = "Build" })
       map("n", "<leader>Xb", function()
-        vim.cmd("botright split | terminal swift build")
+        vim.cmd("botright split | terminal swift build 2>&1 | xcbeautify")
         vim.cmd("resize " .. window_height)
         vim.cmd("setlocal bufhidden=wipe")
         vim.cmd("nnoremap <buffer> q :bdelete!<CR>")
