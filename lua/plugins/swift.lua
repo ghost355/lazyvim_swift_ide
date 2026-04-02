@@ -70,6 +70,7 @@ return {
         vim.cmd("botright vsplit | terminal swift build 2>&1 | xcbeautify")
         -- vim.cmd("resize " .. window_height)
         vim.cmd("setlocal bufhidden=wipe")
+        vim.cmd("setlocal nobuflisted")
         vim.cmd("nnoremap <buffer> q :bdelete!<CR>")
       end, { desc = "Build" })
 
@@ -78,6 +79,7 @@ return {
         vim.cmd("botright  vsplit | terminal swift run")
         -- vim.cmd("resize " .. window_height)
         vim.cmd("setlocal bufhidden=wipe")
+        vim.cmd("setlocal nobuflisted")
         vim.cmd("nnoremap <buffer> q :bdelete!<CR>")
       end, { desc = "Run" })
 
@@ -86,6 +88,7 @@ return {
         vim.cmd("botright  vsplit | terminal swift test 2>&1 | xcbeautify")
         -- vim.cmd("resize " .. window_height)
         vim.cmd("setlocal bufhidden=wipe")
+        vim.cmd("setlocal nobuflisted")
         vim.cmd("nnoremap <buffer> q :bdelete!<CR>")
       end, { desc = "Test All" })
 
@@ -93,6 +96,7 @@ return {
         vim.cmd("botright  vsplit | terminal swift clean")
         -- vim.cmd("resize " .. window_height)
         vim.cmd("setlocal bufhidden=wipe")
+        vim.cmd("setlocal nobuflisted")
         vim.cmd("nnoremap <buffer> q :bdelete!<CR>")
       end, { desc = "Clean" })
 
