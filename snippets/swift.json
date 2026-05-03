@@ -1,0 +1,66 @@
+{
+  "Mutating Pattern": {
+    "prefix": "fmut",
+    "body": [
+      "private mutating func _${1:name}(${2:params}) {",
+      "    ${0:code}",
+      "}",
+      "",
+      "func ${1:name}ing(${2:params}) -> Self {",
+      "    var copy = self",
+      "    copy._${1:name}(${2:params})",
+      "    return copy",
+      "}"
+    ],
+    "description": "Создает приватный мутирующий метод и его immutable-версию"
+  },
+  "Mutating Pattern with Result": {
+    "prefix": "fres",
+    "body": [
+      "private mutating func _${1:name}(${2:params}) -> ${3:ResultType} {",
+      "    ${0:code}",
+      "}",
+      "",
+      "func ${1:name}ing(${2:params}) -> (result: ${3:ResultType}, state: Self) {",
+      "    var copy = self",
+      "    let res = copy._${1:name}(${2:params})",
+      "    return (res, copy)",
+      "}"
+    ],
+    "description": "Мутирующий метод с возвратом результата и нового состояния"
+  },
+  "Withable Protocol": {
+  "prefix": "withable",
+  "body": [
+    "protocol Withable {}",
+    "",
+    "extension Withable {",
+    "    func updating<Value>(_ keyPath: WritableKeyPath<Self, Value>, to value: Value) -> Self {",
+    "        var copy = self",
+    "        copy[keyPath: keyPath] = value",
+    "        return copy",
+    "    }",
+    "}"
+  ]
+}, 
+  "Updating Method": {
+  "prefix": "upd",
+  "body": [
+    "func updating<Value>(_ keyPath: WritableKeyPath<Self, Value>, to value: Value) -> Self {",
+    "    var copy = self",
+    "    copy[keyPath: keyPath] = value",
+    "    return copy",
+    "}"
+  ]
+},
+  "Confirm to Withable": {
+  "prefix": "extw",
+  "body": [
+    "extension ${1:Type}: Withable {}"
+  ],
+  "description": "Подписать тип на протокол Withable"
+}
+
+
+}
+
