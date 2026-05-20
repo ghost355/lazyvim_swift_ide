@@ -24,7 +24,7 @@ return {
             vim.keymap.del("n", "]d", { buffer = bufnr })
           end,
         },
-        formatter = { enabled = true, auto_format = true, tool = "swiftformat" },
+        formatter = { enabled = true, auto_format = true, tool = "swift-format" },
         linter = { enabled = true, auto_lint = true, severety = "warning", config_file = "~/.swiftlinter.yml" },
         build_runner = { enabled = true, show_output = true },
         target_manager = { enabled = true, auto_select = true },
@@ -217,5 +217,30 @@ return {
         vim.list_extend(opts.ensure_installed, { "swift" })
       end
     end,
+  },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      -- Здесь мы указываем, какой форматтер для какого типа файлов использовать
+      formatters_by_ft = {
+        swift = { "swift_format" },
+        -- swift = { "swift_format", "swiftformat" },
+      },
+      -- Эти настройки говорят: если для swift не найден внешний форматтер,
+      -- использовать LSP (SourceKit), но мы в приоритете указываем внешние.
+      default_format_opts = {
+        lsp_format = "fallback",
+      },
+      -- Опционально: добавим пользовательские настройки для swift-форматтеров
+      -- Например, swift-format можно настроить здесь:
+      -- formatters = {
+      --   swift_format = {
+      --     prepend_args = { "--configuration", ".swift-format.json" },
+      --   },
+      --   swiftformat = {
+      --     prepend_args = { "--config", ".swiftformat" },
+      --   },
+      -- },
+    },
   },
 }
